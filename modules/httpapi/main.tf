@@ -42,7 +42,7 @@ resource "aws_apigatewayv2_integration" "httpapiintegration_return_price" {
   passthrough_behavior   = var.passthrough_behavior
   payload_format_version = var.payload_format_version
 }
- cuurency_list= ["GET /EUR", "GET /CHF", "GET /ZL", "GET /USD", "GET /GBP"]
+
 
 resource "aws_apigatewayv2_route" "api_route_terraform_return_price_EUR" {
   api_id    = aws_apigatewayv2_api.httpapi.id

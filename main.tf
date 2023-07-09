@@ -30,7 +30,7 @@ module "httpapi" {
 module "lambda" {
   source                 = "./modules/lambda"
   aws_dynamodb_table     = module.dynamodb.dynamodb
-  nazwa_pliku            = "lambda_function_terraform"
+  lambda_name          = "lambda_function_terraform"
   iam_for_lambda         = "iam_for_lambda"
   dynamodb_lambda_policy = "dynamodb_lambda_policy"
   policy_actions         = "dynamodb:scan"
@@ -38,7 +38,7 @@ module "lambda" {
 module "lambda_return_price" {
   source                 = "./modules/lambda"
   aws_dynamodb_table     = module.dynamodb.dynamodb
-  nazwa_pliku            = "lambda_return_price"
+  lambda_name            = "lambda_return_price"
   iam_for_lambda         = "iam_for_lambda_price_return"
   dynamodb_lambda_policy = "dynamodb_lambda_policy_price_return"
   policy_actions         = "dynamodb:GetItem"

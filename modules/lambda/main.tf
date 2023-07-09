@@ -1,15 +1,15 @@
 data "archive_file" "zip" {
   type        = "zip"
-  source_file = "${var.nazwa_pliku}.py"
-  output_path = "${var.nazwa_pliku}.zip"
+  source_file = "${var.lambda_name}.py"
+  output_path = "${var.lambda_name}.zip"
 }
 resource "aws_lambda_function" "lambda" {
-  function_name    = var.nazwa_pliku
+  function_name    = var.lambda_name
   filename         = data.archive_file.zip.output_path
   source_code_hash = data.archive_file.zip.output_base64sha256
   role             = aws_iam_role.iam_for_lambda.arn
   runtime          = "python3.9"
-  handler          = "${var.nazwa_pliku}.lambda_handler"
+  handler          = "${var.lambda_name}.lambda_handler"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
