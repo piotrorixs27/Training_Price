@@ -223,3 +223,7 @@ $RECYCLE.BIN/
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+lambda_function_terraform.py
+lambda_function_terraform.zip
+lambda_return_price.py
+lambda_return_price.zip

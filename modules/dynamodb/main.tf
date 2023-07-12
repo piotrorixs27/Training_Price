@@ -1,11 +1,14 @@
 resource "aws_dynamodb_table" "Table_Price_Training" {
   name                        = var.dynamodb_table_name
   billing_mode                = var.billing_mode
+  read_capacity=var.billing_mode=="PAY_PER_REQUEST"?null:var.read_capacity
+  write_capacity=var.billing_mode=="PAY_PER_REQUEST"?null:var.write_capacity
+
   table_class                 = var.table_class
   deletion_protection_enabled = var.deletion_protection_enabled
   hash_key                    = var.hash_key
   attribute {
-    name = var.name_currency
+    name = var.hash_key
     type = var.type_attribute_dynamodb
   }
 }

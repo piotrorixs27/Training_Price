@@ -1,10 +1,10 @@
 provider "aws" {
-    region = "eu-west-1"
+  region = "eu-west-1"
 }
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "4.63.0"
     }
   }
@@ -30,10 +30,11 @@ module "httpapi" {
 module "lambda" {
   source                 = "./modules/lambda"
   aws_dynamodb_table     = module.dynamodb.dynamodb
-  lambda_name          = "lambda_function_terraform"
+  lambda_name            = "lambda_function_terraform"
   iam_for_lambda         = "iam_for_lambda"
   dynamodb_lambda_policy = "dynamodb_lambda_policy"
   policy_actions         = "dynamodb:scan"
+  runtime_python         = "python3.9"
 }
 module "lambda_return_price" {
   source                 = "./modules/lambda"
@@ -42,15 +43,17 @@ module "lambda_return_price" {
   iam_for_lambda         = "iam_for_lambda_price_return"
   dynamodb_lambda_policy = "dynamodb_lambda_policy_price_return"
   policy_actions         = "dynamodb:GetItem"
+  runtime_python         = "python3.9"
 }
 
 module "dynamodb" {
   source                      = "./modules/dynamodb"
   dynamodb_table_name         = "Table_Price_Training_Terraform"
-  billing_mode                = "PAY_PER_REQUEST"
+  billing_mode                = "PROVISIONED"
+  read_capacity               = 3
+  write_capacity              = 3
   table_class                 = "STANDARD_INFREQUENT_ACCESS"
   deletion_protection_enabled = false
   hash_key                    = "currency"
-  name_currency               = "currency"
   type_attribute_dynamodb     = "S"
 }

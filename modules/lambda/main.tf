@@ -8,7 +8,7 @@ resource "aws_lambda_function" "lambda" {
   filename         = data.archive_file.zip.output_path
   source_code_hash = data.archive_file.zip.output_base64sha256
   role             = aws_iam_role.iam_for_lambda.arn
-  runtime          = "python3.9"
+  runtime          = var.runtime_python
   handler          = "${var.lambda_name}.lambda_handler"
 }
 

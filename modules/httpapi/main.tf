@@ -8,7 +8,7 @@ resource "aws_apigatewayv2_integration" "httpapiintegration" {
   connection_type        = var.connection_type
   integration_method     = var.integration_method
   integration_uri        = var.lambda_function
-  passthrough_behavior   = var.WHEN_NO_MATCH
+  passthrough_behavior   = var.passthrough_behavior
   payload_format_version = var.payload_format_version
 }
 
