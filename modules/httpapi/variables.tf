@@ -8,10 +8,11 @@ variable "lambda_return_price" {
 }
 variable "passthrough_behavior" {
   type = string
+  description="Integration passthrough behavior."
   validation{
     condition = var.passthrough_behavior=="WHEN_NO_MATCH" ||  var.passthrough_behavior=="WHEN_NO_TEMPLATES" ||  var.passthrough_behavior=="NEVER"
     error_message = "This is wrong mode.Integration passthrough behavior (WHEN_NO_MATCH, WHEN_NO_TEMPLATES, NEVER)."
-    description="Integration passthrough behavior."
+    
 }
 }
 variable "name_httpapi" {
@@ -56,10 +57,7 @@ variable "list_name_api" {
 }
 variable "auto_deploy" {
   type = bool
-  validation {
-    condition= var.auto_deploy=="true" || var.auto_deploy=="false"
-    error_message = "This is wrong mode.Whether updates to an API automatically trigger a new deployment."
-  }
+
 }
 variable "name_stage" {
   type = string

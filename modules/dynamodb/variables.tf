@@ -18,8 +18,8 @@ validation {
 }
 variable "deletion_protection_enabled" {
   type = bool
-  validation {
-    condition=var.deletion_protection_enabled=="false" || var.deletion_protection_enabled=="true"
+    validation {
+    condition=var.deletion_protection_enabled==false || var.deletion_protection_enabled==true
     error_message = "Enables deletion protection for table. Defaults to false."
   }
 }
@@ -30,7 +30,6 @@ variable "hash_key" {
 
 variable "type_attribute_dynamodb" {
   type=string
-  description = "Unique within a region name of the table"
 }
 variable "read_capacity" {
   default=1

@@ -9,7 +9,7 @@ resource "aws_dynamodb_table" "Table_Price_Training" {
   hash_key                    = var.hash_key
   attribute {
     name = var.hash_key
-    type = var.type_attribute_dynamodb
+    type = local.possible_types[var.type_attribute_dynamodb]
   }
 }
 resource "aws_dynamodb_table_item" "DynamoDb_Base_EUR" {

@@ -21,7 +21,6 @@ module "httpapi" {
   integration_type       = "AWS_PROXY"
   connection_type        = "INTERNET"
   integration_method     = "POST"
-  WHEN_NO_MATCH          = "WHEN_NO_MATCH"
   payload_format_version = "2.0"
   list_name_api          = "list"
   auto_deploy            = true
@@ -55,5 +54,5 @@ module "dynamodb" {
   table_class                 = "STANDARD_INFREQUENT_ACCESS"
   deletion_protection_enabled = false
   hash_key                    = "currency"
-  type_attribute_dynamodb     = "S"
+  type_attribute_dynamodb     = "string"
 }
