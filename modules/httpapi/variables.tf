@@ -56,7 +56,12 @@ variable "list_name_api" {
   description = "Route key for the route. For HTTP APIs, the route key can be either $default, or a combination of an HTTP method and resource path, for example, GET /pets."
 }
 variable "auto_deploy" {
+  description = "Whether updates to an API automatically trigger a new deployment."
   type = bool
+  validation {
+    condition=var.deletion_protection_enabled==false || var.deletion_protection_enabled==true
+    error_message = "Enables deletion protection for table. Defaults to false."
+  }
 
 }
 variable "name_stage" {

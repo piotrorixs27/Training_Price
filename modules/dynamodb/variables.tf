@@ -18,6 +18,7 @@ validation {
 }
 variable "deletion_protection_enabled" {
   type = bool
+  description = "Enables deletion protection for table."
     validation {
     condition=var.deletion_protection_enabled==false || var.deletion_protection_enabled==true
     error_message = "Enables deletion protection for table. Defaults to false."
